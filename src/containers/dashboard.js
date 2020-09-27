@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Tickets from './tickets.js'
+import Requests from './requests.js'
 
 export default class Dashboard extends Component {
 
@@ -8,7 +9,7 @@ export default class Dashboard extends Component {
       <div className='container border-primary border rounded m-auto p-3'>
         <div className='row'>
           <div className='col'>
-            <Tickets />
+            <Requests />
           </div>
           <div className='col'>
             <p>Hello World</p>

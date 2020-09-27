@@ -2,7 +2,7 @@ export default (state = [], action) => {
   let requests = [...state]
   switch (action.type) {
     case 'ADD_REQUEST':
-      requests.push(action.ticket)
+      requests.push(action.request)
       return requests
     case 'ACCEPT_REQUEST':
       //if ticket.accepted == false or if ticket.status == 'conditional_pending'

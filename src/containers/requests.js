@@ -1,29 +1,28 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import Ticket from '../components/ticket.js'
+import Request from '../components/request.js'
 
-class Tickets extends Component {
+class Requests extends Component {
 
   componentDidMount() {
     fetch('http://localhost:3000/tickets')
     .then(res => res.json())
-    .then(tickets => tickets.forEach(ticket => {
-        this.props.addRequest(ticket)
+    .then(requests => requests.forEach(request => {
+        this.props.addRequest(request)
       })
     )
   }
 
-  renderTickets() {
-    console.log(this.props.tickets)
-    return this.props.tickets.map((ticket, i) => {
-      return <Ticket key={i} ticket={ticket} />
+  renderRequests() {
+    return this.props.requests.map((request, i) => {
+      return <Request key={i} request={request} />
     })
   }
 
   render() {
     return (
       <>
-        {this.renderTickets()}
+        {this.renderRequests()}
       </>
     )
   }
@@ -31,15 +30,14 @@ class Tickets extends Component {
 
 const mapDispatch = dispatch => {
   return {
-    addRequest: (ticket) => {
-      dispatch({type: "ADD_REQUEST", ticket})
+    addRequest: (request) => {
+      dispatch({type: "ADD_REQUEST", request})
     }
   }
 }
 
 const mapState = state => {
-  console.log(state)
   return {requests: state.requests}
 }
 
-export default connect(mapState, mapDispatch)(Tickets)
+export default connect(mapState, mapDispatch)(Requests)
