@@ -1,1 +1,8 @@
 
+.slick-arrow::before {
+  color: black !important;
+}
+.slick-slider {
+  margin-left: 25px !important;
+  margin-right: 25px !important;
+}
