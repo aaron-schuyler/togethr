@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import Request from '../components/request.js'
 import AcceptedRequest from '../components/acceptedRequest.js'
+import {fetchRequests} from '../actions/requests.js'
 import Slider from 'react-slick'
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
@@ -9,33 +10,12 @@ import "slick-carousel/slick/slick-theme.css"
 class Requests extends Component {
 
   componentDidMount() {
-    fetch('http://localhost:3000/tickets', {
-      credentials: 'include'
-    })
-    .then(res => res.json())
-    .then(requests => requests.forEach(request => {
-        this.props.addRequest(request)
-        console.log(request)
-        this.props.addRequest(request)
-      })
-    )
-
-  //   fetch('http://localhost:3000/login', {
-  //     method: 'POST',
-  //     credentials: 'include',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       'Accepts': 'application/json'
-  //     },
-  //     body: JSON.stringify({username: 'aaron', password: 'skyhigh'})
-  //   })
-  //   .then(res => res.json())
-  //   .then(console.log)
+    this.props.getRequestsAndAddToStore()
   }
 
   renderRequests() {
     return this.props.requests.map((request, i) => {
-      if (request.accepted) return <Request key={i} request={request} />
+      if (!request.accepted) return <Request key={i} request={request} />
     })
   }
 
@@ -65,10 +45,12 @@ class Requests extends Component {
   }
 }
 
+
+
 const mapDispatch = dispatch => {
   return {
-    addRequest: (request) => {
-      dispatch({type: "ADD_REQUEST", request})
+    getRequestsAndAddToStore: () => {
+      dispatch(fetchRequests())
     }
   }
 }

@@ -1,9 +1,8 @@
 export default (state = [], action) => {
   let requests = [...state]
   switch (action.type) {
-    case 'ADD_REQUEST':
-      requests.push(action.request)
-      return requests
+    case 'ADD_REQUESTS':
+      return action.requests
     case 'ACCEPT_REQUEST':
       //if ticket.accepted == false or if ticket.status == 'conditional_pending'
       //change ticket.accepted to true and accepted_by to user.id and ticket.status to 'pending' submit to API
