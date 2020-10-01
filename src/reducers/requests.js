@@ -4,8 +4,9 @@ export default (state = [], action) => {
     case 'ADD_REQUESTS':
       return action.requests
     case 'ACCEPT_REQUEST':
-      //if ticket.accepted == false or if ticket.status == 'conditional_pending'
-      //change ticket.accepted to true and accepted_by to user.id and ticket.status to 'pending' submit to API
+      const ticket = requests.find(ticket => ticket.id === action.request.id)
+      ticket.status = 'PENDING_APPROVAL'
+      ticket.accepted = true
       return requests
     case 'REJECT_REQUEST':
       //Remove Join Table Entry connecting ticket and USer

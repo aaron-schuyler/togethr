@@ -19,7 +19,13 @@ export default function Request(props) {
       </div>
       <div className='card-footer text-center'>
         <div className='btn-group'>
-          <button className='btn-sm btn btn-success'>Accept</button>
+          <button
+            className='btn-sm btn btn-success'
+            id={props.request.id}
+            onClick={props.accept}
+          >
+            Accept
+          </button>
           <button className='btn-sm btn btn-danger'>Decline</button>
         </div>
 

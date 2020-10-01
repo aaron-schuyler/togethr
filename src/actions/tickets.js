@@ -23,3 +23,25 @@ export function submitTicket(ticket) {
     .then(json => dispatch({type: 'SUBMIT_TICKET', ticket: json.ticket}))
   }
 }
+
+export function approveTicket(id) {
+  return (dispatch) => {
+    return fetch('http://localhost:3000/tickets/' + id + '/approve', {
+      credentials: 'include',
+      method: 'PATCH'
+    })
+    .then(res => res.json())
+    .then(ticket => dispatch({type: 'APPROVE_TICKET', ticket: ticket}))
+  }
+}
+
+export function deleteTicket(id) {
+  return (dispatch) => {
+    return fetch('http://localhost:3000/tickets/' + id, {
+      credentials: 'include',
+      method: 'DELETE'
+    })
+    .then(res => res.json())
+    .then(json => dispatch({type: 'DELETE_TICKET', id: id}))
+  }
+}

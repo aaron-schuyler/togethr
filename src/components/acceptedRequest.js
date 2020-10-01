@@ -9,7 +9,7 @@ export default function AcceptedRequest(props) {
           <span className='d-inline-block align-middle'>
           <b>{props.request.title} &bull; </b>
           {
-            props.request.approved ? <span className='text-primary'>Approved</span> :
+            props.request.approved ? <span className='text-success'>Approved</span> :
 <span className='text-warning'>Pending</span>
           }
 
@@ -27,7 +27,10 @@ export default function AcceptedRequest(props) {
       </div>
       <div className='row'>
         <div className='col text-right'>
-          <a className='btn btn-success btn-sm'>Contact</a>
+          <div className='btn-group'>
+            <button className='btn btn-success btn-sm'>C</button>
+            {!props.request.approved && <button className='btn btn-danger btn-sm'>X</button>}
+          </div>
         </div>
       </div>
     </div>

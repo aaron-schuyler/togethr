@@ -98,7 +98,7 @@ export default function NewTicket(props) {
       <select
         required
         className='form-control mb-3'
-        defaultValue=''
+        defaultValue={''}
         onChange={categoryChange}
       >
         <option disabled value=''>Select Catagory</option>

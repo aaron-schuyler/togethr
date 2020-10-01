@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import Request from '../components/request.js'
 import AcceptedRequest from '../components/acceptedRequest.js'
-import {fetchRequests} from '../actions/requests.js'
+import {fetchRequests, acceptRequest} from '../actions/requests.js'
 import Slider from 'react-slick'
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
@@ -10,12 +10,12 @@ import "slick-carousel/slick/slick-theme.css"
 class Requests extends Component {
 
   componentDidMount() {
-    this.props.getRequests()
+    this.props.fetchRequests()
   }
 
   renderRequests() {
     return this.props.requests.map((request, i) => {
-      if (!request.accepted) return <Request key={i} request={request} />
+      if (!request.accepted) return <Request key={i} request={request} accept={this.handleAccept} />
     })
   }
 
@@ -23,6 +23,11 @@ class Requests extends Component {
     return this.props.requests.map((request, i) => {
         if (request.accepted) return <AcceptedRequest key={i} request={request} />
       })
+  }
+
+  handleAccept = (e) => {
+    const id = e.target.id
+    this.props.acceptRequest(id)
   }
 
   render() {
@@ -45,18 +50,8 @@ class Requests extends Component {
   }
 }
 
-
-
-const mapDispatch = dispatch => {
-  return {
-    getRequests: () => {
-      dispatch(fetchRequests())
-    }
-  }
-}
-
 const mapState = state => {
   return {requests: state.requests}
 }
 
-export default connect(mapState, mapDispatch)(Requests)
+export default connect(mapState, {fetchRequests, acceptRequest})(Requests)

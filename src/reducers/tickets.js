@@ -9,14 +9,14 @@ export default (state = [], action) => {
     case 'SUBMIT_TICKET':
       tickets.push(action.ticket)
       return tickets
-    case 'DELETE_TICKET':
-      //Delete Ticket and remove from state
-      return tickets
     case 'APPROVE_TICKET':
-      //can only be done if ticket.status is pending or conditional_pending
-      //remove all ticket user join table entries except the one that has the matching user ID
-      //set status to approved
+      const ticket = tickets.find(ticket => ticket.id === action.ticket.id)
+      ticket.status = 'APPROVED'
+      ticket.approved = true
       return tickets
+    case 'DELETE_TICKET':
+    console.log(action)
+      return tickets.filter(ticket => ticket.id === action.id)
     case 'CLOSE_TICKET':
       //set ticket.status to 'closed'
       return tickets
