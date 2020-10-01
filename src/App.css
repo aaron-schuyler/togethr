@@ -6,3 +6,7 @@
   margin-left: 25px !important;
   margin-right: 25px !important;
 }
+.pointer {
+  cursor: pointer;
+  user-select: none; 
+}

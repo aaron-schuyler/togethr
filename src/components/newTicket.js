@@ -6,7 +6,8 @@ export default function NewTicket(props) {
   const [subcategoryId, setSubcategoryId] = useState('')
   const [categories, setCategories] = useState([])
   const [subcategories, setSubcategories] = useState(false)
-  const [skills, setSkills] = useState()
+  const [skillOptions, setSkillOptions] = useState([])
+  const [skills, setSkills] = useState([])
 
   useEffect(() => {
     fetch('http://localhost:3000/categories', {credentials: 'include'})
@@ -53,22 +54,49 @@ export default function NewTicket(props) {
     })
   }
 
+  const subcategoryChange = (e) => {
+    const id = e.target.value
+    setSubcategoryId(id)
+    fetch('http://localhost:3000/subcategories/' + id, {credentials: 'include'})
+    .then(res => res.json())
+    .then(subcategory => {
+      setSkillOptions(subcategory.skills.map(skill => {
+        return (
+          <div className='badge badge-pill border border-primary ml-3 pointer' id={skill.id} onClick={skillClick} key={skill.id}>{skill.attributes.name}</div>
+        )
+      }))
+    })
+  }
+
+  const skillClick = (e) => {
+    e.target.classList.toggle('badge-primary')
+    const id = e.target.id
+    if (!e.target.classList.contains('badge-primary')) {
+      setSkills(skills => [...skills.filter(el => el !== id)])
+    } else {
+      setSkills(skills => [...skills, id])
+    }
+  }
+
   return (
     <form onSubmit={submit}>
       <input
-        className='form-control'
+        required
+        className='form-control mb-3'
         placeholder='Title'
         value={title}
         onChange={e => setTitle(e.target.value)}
       />
       <textarea
-        className='form-control'
+        required
+        className='form-control mb-3'
         placeholder='Description'
         onChange={e => setDescription(e.target.value)}
         rows='6'
       />
       <select
-        className='form-control'
+        required
+        className='form-control mb-3'
         defaultValue=''
         onChange={categoryChange}
       >
@@ -76,18 +104,22 @@ export default function NewTicket(props) {
         {categories}
       </select>
       <select
+        required
         disabled={!subcategories}
-        className='form-control'
+        className='form-control mb-3'
         defaultValue=''
-        onChange={e => setSubcategoryId(e.target.value)}
+        onChange={subcategoryChange}
       >
         <option disabled value=''>Select Subcategory</option>
         {subcategories}
       </select>
+      <div className='mb-3'>
+      {skillOptions}
+      </div>
       <input
         type='submit'
         value='Submit Ticket'
-        className='form-control btn btn-sm btn-primary'
+        className='btn btn-sm btn-primary'
       />
     </form>
   )

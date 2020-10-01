@@ -26,9 +26,13 @@ class Tickets extends Component {
       <div className='container border-primary border rounded m-auto p-3'>
         <div className='row'>
           <div className='col-6 p-3'>
+            <h2>New Ticket</h2>
+            <hr />
             <NewTicket handleSubmit={this.handleSubmit} />
           </div>
           <div className='col p-3'>
+            <h2>Your Tickets</h2>
+            <hr />
             <div className='list-group'>
               {this.renderTickets()}
             </div>
