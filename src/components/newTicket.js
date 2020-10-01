@@ -6,7 +6,7 @@ export default function NewTicket(props) {
   const [subcategoryId, setSubcategoryId] = useState('')
   const [categories, setCategories] = useState([])
   const [subcategories, setSubcategories] = useState(false)
-  const [skillOptions, setSkillOptions] = useState([])
+  const [skillOptions, setSkillOptions] = useState(<p className='my-auto'>Select a category and subcategory first.</p>)
   const [skills, setSkills] = useState([])
 
   useEffect(() => {
@@ -31,7 +31,7 @@ export default function NewTicket(props) {
     props.handleSubmit({
       title,
       description,
-      subcategoryId,
+      subcategory_id: subcategoryId,
       skills
     })
   }
@@ -62,7 +62,7 @@ export default function NewTicket(props) {
     .then(subcategory => {
       setSkillOptions(subcategory.skills.map(skill => {
         return (
-          <div className='badge badge-pill border border-primary ml-3 pointer' id={skill.id} onClick={skillClick} key={skill.id}>{skill.attributes.name}</div>
+          <div className='badge badge-pill border border-rounded ml-3 pointer my-auto' id={skill.id} onClick={skillClick} key={skill.id}>{skill.attributes.name}</div>
         )
       }))
     })
@@ -82,6 +82,7 @@ export default function NewTicket(props) {
     <form onSubmit={submit}>
       <input
         required
+        name='title'
         className='form-control mb-3'
         placeholder='Title'
         value={title}
@@ -113,8 +114,11 @@ export default function NewTicket(props) {
         <option disabled value=''>Select Subcategory</option>
         {subcategories}
       </select>
-      <div className='mb-3'>
-      {skillOptions}
+      <div className='form-group'>
+        <label>Add Skills</label>
+        <div className='mb-3 border rounded p-3'>
+          {skillOptions}
+        </div>
       </div>
       <input
         type='submit'

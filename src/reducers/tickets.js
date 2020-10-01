@@ -7,7 +7,7 @@ export default (state = [], action) => {
       //update ticket
       return tickets
     case 'SUBMIT_TICKET':
-      //change ticket status to 'submitted'
+      tickets.push(action.ticket)
       return tickets
     case 'DELETE_TICKET':
       //Delete Ticket and remove from state

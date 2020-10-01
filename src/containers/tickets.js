@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {addTickets} from '../actions/tickets.js'
+import {addTickets, submitTicket} from '../actions/tickets.js'
 import Ticket from '../components/ticket.js'
 import NewTicket from '../components/newTicket.js'
 
@@ -11,14 +11,13 @@ class Tickets extends Component {
   }
 
   renderTickets() {
-    console.log(this.props.tickets)
     return this.props.tickets.map((ticket, i) => {
       return <Ticket key={i} ticket={ticket} />
     })
   }
 
-  handleSubmit(ticketData) {
-    console.log(ticketData)
+  handleSubmit = (ticketData) => {
+    this.props.submitTicket(ticketData)
   }
 
   render() {
@@ -47,4 +46,4 @@ const mapState = state => {
   return {tickets: state.tickets}
 }
 
-export default connect(mapState, {addTickets})(Tickets)
+export default connect(mapState, {addTickets, submitTicket})(Tickets)
