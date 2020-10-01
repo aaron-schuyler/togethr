@@ -1,16 +1,13 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
+import {addTickets} from '../actions/tickets.js'
 import Ticket from '../components/ticket.js'
+import NewTicket from '../components/newTicket.js'
 
 class Tickets extends Component {
 
   componentDidMount() {
-    fetch('http://localhost:3000/tickets')
-    .then(res => res.json())
-    .then(tickets => tickets.forEach(ticket => {
-        this.props.addTicket(ticket)
-      })
-    )
+    this.props.addTickets()
   }
 
   renderTickets() {
@@ -20,20 +17,25 @@ class Tickets extends Component {
     })
   }
 
+  handleSubmit(ticketData) {
+    console.log(ticketData)
+  }
+
   render() {
     return (
-      <>
-        {this.renderTickets()}
-      </>
+      <div className='container border-primary border rounded m-auto p-3'>
+        <div className='row'>
+          <div className='col-6 p-3'>
+            <NewTicket handleSubmit={this.handleSubmit} />
+          </div>
+          <div className='col p-3'>
+            <div className='list-group'>
+              {this.renderTickets()}
+            </div>
+          </div>
+        </div>
+      </div>
     )
-  }
-}
-
-const mapDispatch = dispatch => {
-  return {
-    addTicket: (ticket) => {
-      dispatch({type: "ADD_TICKET", ticket})
-    }
   }
 }
 
@@ -41,4 +43,4 @@ const mapState = state => {
   return {tickets: state.tickets}
 }
 
-export default connect(mapState, mapDispatch)(Tickets)
+export default connect(mapState, {addTickets})(Tickets)

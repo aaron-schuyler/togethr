@@ -10,7 +10,7 @@ import "slick-carousel/slick/slick-theme.css"
 class Requests extends Component {
 
   componentDidMount() {
-    this.props.getRequestsAndAddToStore()
+    this.props.getRequests()
   }
 
   renderRequests() {
@@ -49,7 +49,7 @@ class Requests extends Component {
 
 const mapDispatch = dispatch => {
   return {
-    getRequestsAndAddToStore: () => {
+    getRequests: () => {
       dispatch(fetchRequests())
     }
   }

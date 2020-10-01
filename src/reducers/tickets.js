@@ -1,9 +1,8 @@
 export default (state = [], action) => {
   let tickets = [...state]
   switch (action.type) {
-    case 'ADD_TICKET':
-      tickets.push(action.ticket)
-      return tickets
+    case 'ADD_TICKETS':
+      return action.tickets
     case 'MODIFY_TICKET':
       //update ticket
       return tickets

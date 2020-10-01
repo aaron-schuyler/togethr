@@ -9,15 +9,15 @@ function App() {
     <div className="App">
       <Router>
         <header className="Header">
-          <ul>
-            <li>
-              <Link to='/tickets'>You</Link>
+          <ul className='nav'>
+            <li className='nav-item'>
+              <Link className='nav-link' to='/tickets'>You</Link>
             </li>
-            <li>
-              <Link to='/requests'>Others</Link>
+            <li className='nav-item'>
+              <Link className='nav-link' to='/requests'>Others</Link>
             </li>
-            <li>
-              <Link to='/account'>Your Account</Link>
+            <li className='nav-item'>
+              <Link className='nav-link' to='/account'>Your Account</Link>
             </li>
           </ul>
         </header>
