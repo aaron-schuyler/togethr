@@ -11,6 +11,7 @@ class Tickets extends Component {
   }
 
   renderTickets() {
+    console.log(this.props.tickets)
     if (this.props.tickets.length > 0) {
       return this.props.tickets.map((ticket, i) => {
         return <Ticket key={i} ticket={ticket} handleApprove={this.handleApprove} handleDelete={this.handleDelete} />
@@ -23,12 +24,11 @@ class Tickets extends Component {
   handleSubmit = (ticketData) => {
     this.props.submitTicket(ticketData)
   }
-  handleApprove = (e) => {
-    const id = e.target.id
+  handleApprove = (id) => {
     this.props.approveTicket(id)
   }
-  handleDelete = (e) => {
-    const id = e.target.id
+  handleDelete = (id) => {
+    console.log(id)
     this.props.deleteTicket(id)
   }
 

@@ -1,4 +1,6 @@
 import React from 'react'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faTrash, faEnvelope} from '@fortawesome/free-solid-svg-icons'
 
 export default function AcceptedRequest(props) {
   return (
@@ -28,8 +30,8 @@ export default function AcceptedRequest(props) {
       <div className='row'>
         <div className='col text-right'>
           <div className='btn-group'>
-            <a href={`mailto:${props.request.contact}`} className='btn btn-success btn-sm'>C</a>
-            {!props.request.approved && <button className='btn btn-danger btn-sm'>X</button>}
+            <a href={`mailto:${props.request.contact}`} className='btn btn-success btn-sm'><FontAwesomeIcon icon={faEnvelope} /></a>
+            {!props.request.approved && <button className='btn btn-danger btn-sm'><FontAwesomeIcon icon={faTrash} /></button>}
           </div>
         </div>
       </div>

@@ -1,4 +1,6 @@
 import React from 'react'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faTrash, faEnvelope, faPen} from '@fortawesome/free-solid-svg-icons'
 
 export default function Ticket(props) {
   return (
@@ -27,13 +29,13 @@ export default function Ticket(props) {
       </div>
       <div className='row pt-2'>
         <div className='col'>
-          {!props.ticket.approved && props.ticket.accepted && <button onClick={props.handleApprove} id={props.ticket.id} className='btn btn-success btn-sm'>Approve</button>}
+          {!props.ticket.approved && props.ticket.accepted && <button onClick={e => props.handleApprove(props.ticket.id)} className='btn btn-success btn-sm'>Approve</button>}
         </div>
         <div className='col text-right'>
           <div className='btn-group'>
-            {props.ticket.accepted && <a href={`mailto:${props.ticket.contact}`} className='btn btn-success btn-sm'>C</a>}
-            {props.ticket.approved && <button className='btn btn-primary btn-sm'>E</button>}
-            <button className='btn btn-danger btn-sm' id={props.ticket.id} onClick={props.handleDelete}>X</button>
+            {props.ticket.accepted && <a href={`mailto:${props.ticket.contact}`} className='btn btn-success btn-sm'><FontAwesomeIcon icon={faEnvelope} /></a>}
+            {!props.ticket.approved && <button className='btn btn-primary btn-sm'><FontAwesomeIcon icon={faPen} /></button>}
+            <button className='btn btn-danger btn-sm' onClick={e => props.handleDelete(props.ticket.id)}><FontAwesomeIcon icon={faTrash} /></button>
           </div>
         </div>
       </div>

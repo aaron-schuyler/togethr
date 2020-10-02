@@ -16,7 +16,7 @@ export default (state = [], action) => {
       ticket.approved = true
       return tickets
     case 'DELETE_TICKET':
-      return tickets.filter(ticket => ticket.id === action.id)
+      return tickets.filter(ticket => ticket.id !== action.id)
     case 'CLOSE_TICKET':
       //set ticket.status to 'closed'
       return tickets
