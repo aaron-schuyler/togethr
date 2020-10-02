@@ -7,6 +7,7 @@ export default (state = [], action) => {
       //update ticket
       return tickets
     case 'SUBMIT_TICKET':
+      console.log(action)
       tickets.push(action.ticket)
       return tickets
     case 'APPROVE_TICKET':
@@ -15,7 +16,6 @@ export default (state = [], action) => {
       ticket.approved = true
       return tickets
     case 'DELETE_TICKET':
-    console.log(action)
       return tickets.filter(ticket => ticket.id === action.id)
     case 'CLOSE_TICKET':
       //set ticket.status to 'closed'

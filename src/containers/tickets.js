@@ -11,9 +11,13 @@ class Tickets extends Component {
   }
 
   renderTickets() {
-    return this.props.tickets.map((ticket, i) => {
-      return <Ticket key={i} ticket={ticket} handleApprove={this.handleApprove} handleDelete={this.handleDelete} />
-    })
+    if (this.props.tickets.length > 0) {
+      return this.props.tickets.map((ticket, i) => {
+        return <Ticket key={i} ticket={ticket} handleApprove={this.handleApprove} handleDelete={this.handleDelete} />
+      })
+    } else {
+      return <div className='border text-center rounded p-3'><p className='my-auto'>Your tickets will appear here as you create them.</p></div>
+    }
   }
 
   handleSubmit = (ticketData) => {

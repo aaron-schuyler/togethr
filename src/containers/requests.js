@@ -14,9 +14,13 @@ class Requests extends Component {
   }
 
   renderRequests() {
-    return this.props.requests.map((request, i) => {
-      if (!request.accepted) return <Request key={i} request={request} accept={this.handleAccept} />
-    })
+    if (this.props.requests.length > 0) {
+      return this.props.requests.map((request, i) => {
+        if (!request.accepted) return <Request key={i} request={request} accept={this.handleAccept} />
+      })
+    } else {
+      return <div className='border text-center rounded p-3'><p className='my-auto'>Requests will appear here as other members submit them.</p></div>
+    }
   }
 
   renderAcceptedRequests() {
