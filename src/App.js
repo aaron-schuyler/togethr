@@ -5,9 +5,7 @@ import Login from './components/login.js'
 import {BrowserRouter as Router, Switch, Route, Link, Redirect, location} from 'react-router-dom'
 import './App.css';
 
-const logout = () => {
-  console.log('logging out')
-}
+
 
 function App() {
   const [auth, setAuth] = useState(false)
@@ -18,6 +16,14 @@ function App() {
       setAuth(json.success)
     })
   })
+
+  const logout = () => {
+    fetch('http://localhost:3000/logout', {
+      method: 'DELETE',
+      credentials: 'include'
+    })
+    .then(res => setAuth(false))
+  }
 
   function PrivateRoute({children, ...rest}) {
     return (
