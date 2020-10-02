@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import Tickets from './containers/tickets.js'
 import Requests from './containers/requests.js'
+import Account from './components/account.js'
 import Login from './components/login.js'
-import {BrowserRouter as Router, Switch, Route, Link, Redirect, location} from 'react-router-dom'
+import Signup from './components/signup.js'
+import {BrowserRouter as Router, Switch, Route, NavLink, Redirect, location} from 'react-router-dom'
 import './App.css';
 
 
@@ -51,31 +53,42 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <header className="Header">
+        <header className="Header navbar border-bottom mb-3">
+          <h1 className='text-primary'>togethr</h1>
           <ul className='nav'>
-            <li className='nav-item'>
-              <Link className='nav-link' to='/tickets'>You</Link>
-            </li>
-            <li className='nav-item'>
-              <Link className='nav-link' to='/requests'>Others</Link>
-            </li>
-            <li className='nav-item'>
-              <Link className='nav-link' to='/account'>Your Account</Link>
-            </li>
-            <li className='nav-item'>
-              <a className='nav-link pointer' onClick={logout}>Logout</a>
-            </li>
+            {auth &&
+              <>
+              <li className='nav-item'>
+                <NavLink className='nav-link' to='/tickets'>Your Tickets</NavLink>
+              </li>
+              <li className='nav-item'>
+                <NavLink className='nav-link' to='/requests'>Requests</NavLink>
+              </li>
+              <li className='nav-item'>
+                <NavLink className='nav-link' to='/account'>Your Account</NavLink>
+              </li>
+              <li className='nav-item'>
+                <a className='nav-link pointer' onClick={logout}>Logout</a>
+              </li>
+              </>
+            }
           </ul>
         </header>
         <Switch>
           <Route path='/login'>
             {auth ? <Redirect to='/requests' /> : <Login handleLogin={authenticate} />}
           </Route>
+          <Route path='/signup'>
+            {auth ? <Redirect to='/requests' /> : <Signup handleLogin={authenticate} />}
+          </Route>
           <PrivateRoute path='/tickets'>
             <Tickets />
           </PrivateRoute>
           <PrivateRoute path='/requests'>
             <Requests />
+          </PrivateRoute>
+          <PrivateRoute path='/account'>
+            <Account />
           </PrivateRoute>
         </Switch>
       </Router>

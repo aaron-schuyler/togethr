@@ -18,7 +18,6 @@ class Requests extends Component {
       this.props.requests.forEach((request, i) => {
         if (!request.accepted) requests.push(<Request key={i} request={request} accept={this.handleAccept} />)
       })
-      console.log(requests)
       return (requests.length > 0) ? requests : <div className='border text-center rounded p-3'><p className='my-auto'>There are no more open requests. Requests will appear here as users submit them.</p></div>
   }
 

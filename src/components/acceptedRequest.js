@@ -28,7 +28,7 @@ export default function AcceptedRequest(props) {
       <div className='row'>
         <div className='col text-right'>
           <div className='btn-group'>
-            <button className='btn btn-success btn-sm'>C</button>
+            <a href={`mailto:${props.request.contact}`} className='btn btn-success btn-sm'>C</a>
             {!props.request.approved && <button className='btn btn-danger btn-sm'>X</button>}
           </div>
         </div>

@@ -8,5 +8,10 @@
 }
 .pointer {
   cursor: pointer;
-  user-select: none; 
+  user-select: none;
+}
+
+.active {
+  font-weight: bold;
+  border-bottom: 3px solid #007bff;
 }

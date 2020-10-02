@@ -31,7 +31,7 @@ export default function Ticket(props) {
         </div>
         <div className='col text-right'>
           <div className='btn-group'>
-            {props.ticket.accepted && <a href='mailto:theuser@gmail.com' className='btn btn-success btn-sm'>C</a>}
+            {props.ticket.accepted && <a href={`mailto:${props.ticket.contact}`} className='btn btn-success btn-sm'>C</a>}
             {props.ticket.approved && <button className='btn btn-primary btn-sm'>E</button>}
             <button className='btn btn-danger btn-sm' id={props.ticket.id} onClick={props.handleDelete}>X</button>
           </div>
