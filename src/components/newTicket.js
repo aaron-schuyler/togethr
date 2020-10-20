@@ -4,6 +4,7 @@ import SelectSkills from './selectSkills.js'
 export default function NewTicket(props) {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
+  const [subcategoryId, setSubcategoryId] = useState('')
   const [skills, setSkills] = useState([])
 
   const submit = (e) => {
