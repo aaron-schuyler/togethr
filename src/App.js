@@ -4,7 +4,7 @@ import Requests from './containers/requests.js'
 import Account from './components/account.js'
 import Login from './components/login.js'
 import Signup from './components/signup.js'
-import {BrowserRouter as Router, Switch, Route, NavLink, Redirect, location} from 'react-router-dom'
+import {BrowserRouter as Router, Switch, Route, NavLink, Redirect} from 'react-router-dom'
 import './App.css';
 
 

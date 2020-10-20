@@ -1,13 +1,9 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import SelectSkills from './selectSkills.js'
 
 export default function NewTicket(props) {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
-  const [subcategoryId, setSubcategoryId] = useState('')
-  const [categories, setCategories] = useState([])
-  const [subcategories, setSubcategories] = useState(false)
-  const [skillOptions, setSkillOptions] = useState(<p className='my-auto'>Select a category and subcategory first.</p>)
   const [skills, setSkills] = useState([])
 
   const submit = (e) => {
