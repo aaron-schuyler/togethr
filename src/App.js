@@ -68,7 +68,7 @@ function App() {
                 <NavLink className='nav-link' to='/account'>Your Account</NavLink>
               </li>
               <li className='nav-item'>
-                <a className='nav-link pointer' onClick={logout}>Logout</a>
+                <button className='nav-link pointer' onClick={logout}>Logout</button>
               </li>
               </>
             }

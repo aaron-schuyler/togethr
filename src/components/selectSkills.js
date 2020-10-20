@@ -1,7 +1,6 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 
 export default function SelectSkills(props) {
-  const [subcategoryId, setSubcategoryId] = useState('')
   const [categories, setCategories] = useState([])
   const [subcategories, setSubcategories] = useState(false)
   const [skillOptions, setSkillOptions] = useState(<p className='my-auto'>Select a category and subcategory first.</p>)
