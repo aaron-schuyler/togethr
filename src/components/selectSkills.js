@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
 
 export default function SelectSkills(props) {
-  const [subcategoryId, setSubcategoryId] = useState('')
   const [categories, setCategories] = useState([])
   const [subcategories, setSubcategories] = useState(false)
   const [skillOptions, setSkillOptions] = useState(<p className='my-auto'>Select a category and subcategory first.</p>)
@@ -43,7 +42,6 @@ export default function SelectSkills(props) {
 
   const subcategoryChange = (e) => {
     const id = e.target.value
-    setSubcategoryId(id)
     props.setSubcategoryId(id)
     fetch('https://aaronschuyler-togethr.herokuapp.com/subcategories/' + id, {credentials: 'include'})
     .then(res => res.json())
