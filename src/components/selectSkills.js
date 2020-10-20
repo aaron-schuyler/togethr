@@ -7,7 +7,7 @@ export default function SelectSkills(props) {
   const [skillOptions, setSkillOptions] = useState(<p className='my-auto'>Select a category and subcategory first.</p>)
 
   useEffect(() => {
-    fetch('http://localhost:3000/categories', {credentials: 'include'})
+    fetch('https://aaronschuyler-togethr.herokuapp.com/categories', {credentials: 'include'})
     .then(res => res.json())
     .then(categories => {
       setCategories(categories.map(category => {
@@ -25,7 +25,7 @@ export default function SelectSkills(props) {
 
   const categoryChange = (e) => {
     const id = e.target.value
-    fetch('http://localhost:3000/categories/' + id, {credentials: 'include'})
+    fetch('https://aaronschuyler-togethr.herokuapp.com/categories/' + id, {credentials: 'include'})
     .then(res => res.json())
     .then(category => {
       setSubcategories(category.subcategories.map(subcategory => {
@@ -45,7 +45,7 @@ export default function SelectSkills(props) {
     const id = e.target.value
     setSubcategoryId(id)
     props.setSubcategoryId(id)
-    fetch('http://localhost:3000/subcategories/' + id, {credentials: 'include'})
+    fetch('https://aaronschuyler-togethr.herokuapp.com/subcategories/' + id, {credentials: 'include'})
     .then(res => res.json())
     .then(subcategory => {
       setSkillOptions(subcategory.skills.map(skill => {

@@ -11,7 +11,7 @@ class Tickets extends Component {
   }
 
   renderTickets() {
-    console.log(this.props.tickets)
+
     if (this.props.tickets.length > 0) {
       return this.props.tickets.map((ticket, i) => {
         return <Ticket key={i} ticket={ticket} handleApprove={this.handleApprove} handleDelete={this.handleDelete} />

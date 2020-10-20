@@ -8,7 +8,7 @@ export default function NewTicket(props) {
   const submit = (e) => {
     e.preventDefault()
     console.log(userData)
-    fetch('http://localhost:3000/signup', {
+    fetch('https://aaronschuyler-togethr.herokuapp.com/signup', {
       method: 'POST',
       credentials: 'include',
       headers: {

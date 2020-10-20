@@ -1,6 +1,6 @@
 export function addTickets(){
   return (dispatch) => {
-    return fetch('http://localhost:3000/tickets', {
+    return fetch('https://aaronschuyler-togethr.herokuapp.com/tickets', {
       credentials: 'include'
     })
     .then(res => res.json())
@@ -10,7 +10,7 @@ export function addTickets(){
 
 export function submitTicket(ticket) {
   return (dispatch) => {
-    return fetch('http://localhost:3000/tickets',{
+    return fetch('https://aaronschuyler-togethr.herokuapp.com/tickets',{
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -20,13 +20,15 @@ export function submitTicket(ticket) {
       body: JSON.stringify(ticket)
     })
     .then(res => res.json())
-    .then(json => dispatch({type: 'SUBMIT_TICKET', ticket: json.ticket}))
+    .then(json => {
+      dispatch({type: 'SUBMIT_TICKET', ticket: json.ticket})
+    })
   }
 }
 
 export function approveTicket(id) {
   return (dispatch) => {
-    return fetch('http://localhost:3000/tickets/' + id + '/approve', {
+    return fetch('https://aaronschuyler-togethr.herokuapp.com/tickets/' + id + '/approve', {
       credentials: 'include',
       method: 'PATCH'
     })
@@ -37,7 +39,7 @@ export function approveTicket(id) {
 
 export function deleteTicket(id) {
   return (dispatch) => {
-    return fetch('http://localhost:3000/tickets/' + id, {
+    return fetch('https://aaronschuyler-togethr.herokuapp.com/tickets/' + id, {
       credentials: 'include',
       method: 'DELETE'
     })

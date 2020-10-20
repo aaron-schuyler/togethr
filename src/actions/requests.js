@@ -1,6 +1,6 @@
 export function fetchRequests(){
   return (dispatch) => {
-    return fetch('http://localhost:3000/requests', {
+    return fetch('https://aaronschuyler-togethr.herokuapp.com/requests', {
       credentials: 'include'
     })
     .then(res => res.json())
@@ -10,7 +10,7 @@ export function fetchRequests(){
 
 export function acceptRequest(id){
   return (dispatch) => {
-    return fetch('http://localhost:3000/requests/' + id + '/accept', {
+    return fetch('https://aaronschuyler-togethr.herokuapp.com/requests/' + id + '/accept', {
       credentials: 'include',
       method: 'PATCH'
     })

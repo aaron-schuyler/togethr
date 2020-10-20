@@ -6,7 +6,7 @@ export default function Account(props) {
   const [skills, setSkills] = useState([])
 
   useEffect(() =>{
-    fetch('http://localhost:3000/account/', {credentials: 'include'})
+    fetch('https://aaronschuyler-togethr.herokuapp.com/account/', {credentials: 'include'})
     .then(res => res.json())
     .then(user => setUser(user))
   },[])
@@ -26,7 +26,7 @@ export default function Account(props) {
   }
 
   const addSkills = () => {
-    fetch('http://localhost:3000/add_skills',{
+    fetch('https://aaronschuyler-togethr.herokuapp.com/add_skills',{
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',

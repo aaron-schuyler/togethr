@@ -12,7 +12,7 @@ import './App.css';
 function App() {
   const [auth, setAuth] = useState(false)
   useEffect(() => {
-    fetch('http://localhost:3000/check_session', {credentials: 'include'})
+    fetch('https://aaronschuyler-togethr.herokuapp.com/check_session', {credentials: 'include'})
     .then(res => res.json())
     .then(json => {
       setAuth(json.success)

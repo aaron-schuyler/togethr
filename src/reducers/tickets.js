@@ -1,5 +1,6 @@
 export default (state = [], action) => {
   let tickets = [...state]
+  console.log('e')
   switch (action.type) {
     case 'ADD_TICKETS':
       return action.tickets

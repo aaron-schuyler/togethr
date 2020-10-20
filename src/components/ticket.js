@@ -1,8 +1,15 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faTrash, faEnvelope, faPen} from '@fortawesome/free-solid-svg-icons'
+import {faTrash, faEnvelope, faPen, faStar} from '@fortawesome/free-solid-svg-icons'
+
 
 export default function Ticket(props) {
+
+  const [rating, setRating] = useState(0)
+
+  const handleStarClick = (id) => {
+    setRating(id)
+  }
   return (
     <div className='list-group-item'>
       <div className='row'>
@@ -30,6 +37,17 @@ export default function Ticket(props) {
       <div className='row pt-2'>
         <div className='col'>
           {!props.ticket.approved && props.ticket.accepted && <button onClick={e => props.handleApprove(props.ticket.id)} className='btn btn-success btn-sm'>Approve</button>}
+
+          {props.ticket.approved &&
+            <div className='stars'>
+              {rating}
+              <button onClick={e => handleStarClick(1, e.target)}><FontAwesomeIcon icon={faStar} /></button>
+              <button onClick={e => handleStarClick(2)}><FontAwesomeIcon   icon={faStar} /></button>
+              <button onClick={e => handleStarClick(3)}><FontAwesomeIcon  icon={faStar} /></button>
+              <button onClick={e => handleStarClick(4)}><FontAwesomeIcon  icon={faStar} /></button>
+              <button onClick={e => handleStarClick(5)}><FontAwesomeIcon icon={faStar} /></button>
+            </div>
+          }
         </div>
         <div className='col text-right'>
           <div className='btn-group'>
