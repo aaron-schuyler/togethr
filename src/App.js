@@ -85,6 +85,7 @@ function App() {
                 <Redirect to='/login' />
               )
             }}
+          />
           <Route path='/login'>
             {auth ? <Redirect to='/requests' /> : <Login handleLogin={authenticate} />}
           </Route>
