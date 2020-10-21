@@ -68,13 +68,23 @@ function App() {
                 <NavLink className='nav-link' to='/account'>Your Account</NavLink>
               </li>
               <li className='nav-item'>
-                <button className='btn-link nav-link pointer' onClick={logout}>Logout</button>
+                <button className='btn btn-link nav-link pointer' onClick={logout}>Logout</button>
               </li>
               </>
             }
           </ul>
         </header>
         <Switch>
+          <Route
+            exact
+            path='/'
+            render={() => {
+              return (
+                auth ?
+                <Redirect to='/tickets' /> :
+                <Redirect to='/login' />
+              )
+            }}
           <Route path='/login'>
             {auth ? <Redirect to='/requests' /> : <Login handleLogin={authenticate} />}
           </Route>
